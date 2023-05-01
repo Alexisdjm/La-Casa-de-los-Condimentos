@@ -1,6 +1,7 @@
 from rest_framework.viewsets import ModelViewSet
 from core.models import Product, Collection
 from .serializers import ProductSerializer, CollectionSerializer
+from django.db.models import Q
 
 class ProductApiViewSet(ModelViewSet):
     serializer_class = ProductSerializer
@@ -30,3 +31,15 @@ class SingleProductApiViewSet(ModelViewSet):
 class CartApiViewSet(ModelViewSet):
     serializer_class = ProductSerializer
     queryset = Product.objects.filter(cart=True)
+
+
+class QueryViewSet(ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
+    def get_queryset(self):
+        queryset = Product.objects.all()
+        search_value = self.request.query_params.get('search', '')
+        if search_value:
+            queryset = queryset.filter(Q(name__icontains=search_value) | Q(description__icontains=search_value))
+        return queryset
