@@ -7,6 +7,6 @@ router.register(prefix=r'products/(?P<category>.*)', basename='products', viewse
 router.register(prefix=r'item/(?P<id>.*)', basename='item', viewset=SingleProductApiViewSet)
 router.register(prefix='collections', basename='collections', viewset=CollectionApiVIewSet)
 router.register(prefix=r'consulta', basename='consulta', viewset=QueryViewSet)
-router.register(prefix='cart', basename='cart', viewset=CartApiViewSet)
+router.register(prefix=r'cart', basename='cart', viewset=CartApiViewSet)
 
 

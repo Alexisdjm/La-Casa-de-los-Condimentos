@@ -12,12 +12,12 @@ CATEGORY_CHOICES = (
 class Product(models.Model):
     name = models.CharField(max_length=256)
     price = models.FloatField()
+    Pgramos = models.FloatField(default=0)
     description = models.TextField()
     available = models.BooleanField(default=True)
     featured = models.BooleanField(default=False)
     image = models.ImageField(blank=True, null=True)
     category =  models.CharField(choices=CATEGORY_CHOICES, max_length=2)
-    cart = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name

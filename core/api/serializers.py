@@ -8,7 +8,7 @@ class ProductSerializer(ModelSerializer):
         max_length=None, allow_empty_file=False, allow_null=True, use_url=True, required=False)
     class Meta:
         model = Product
-        fields = ['id','name','price','description','available','featured','image','category','cart']
+        fields = ['id','name','price','description','available','featured','image','category']
 
 class CollectionSerializer(ModelSerializer):
     collection_products = ProductSerializer(many=True)
