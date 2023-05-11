@@ -1,1 +1,8 @@
 db.sqlite3
+
+/condimentos/__pycache__
+
+/condimentos/core/__pycache__
+
+/condimentos/core/api/__pycache__
+
