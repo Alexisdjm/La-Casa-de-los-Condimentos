@@ -5,6 +5,8 @@ from django.shortcuts import get_object_or_404
 from core.models import Product, Collection
 from .serializers import ProductSerializer, CollectionSerializer
 from django.contrib.sessions.backends.db import SessionStore
+from django.http import JsonResponse
+from django.core import serializers
 from django.db.models import Q
 
 class ProductApiViewSet(ModelViewSet):
@@ -28,6 +30,7 @@ class CollectionApiVIewSet(ModelViewSet):
 class SingleProductApiViewSet(ModelViewSet):
     serializer_class = ProductSerializer
     look_param = 'id'
+
     def get_queryset(self):
         product = self.kwargs.get(self.look_param)
         queryset = Product.objects.filter(id=product)
