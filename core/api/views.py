@@ -1,12 +1,13 @@
-from rest_framework.viewsets import ModelViewSet
-from rest_framework import status
-from rest_framework.response import Response
-from django.shortcuts import get_object_or_404
-from core.models import Product, Collection
 from .serializers import ProductSerializer, CollectionSerializer
 from django.contrib.sessions.backends.db import SessionStore
+from rest_framework.viewsets import ModelViewSet
+from django.shortcuts import get_object_or_404
+from rest_framework.response import Response
+from core.models import Product, Collection
 from django.http import JsonResponse
 from django.core import serializers
+from rest_framework import status
+from django.conf import settings
 from django.db.models import Q
 
 class ProductApiViewSet(ModelViewSet):
@@ -62,7 +63,13 @@ class CartApiViewSet(ModelViewSet):
         product = get_object_or_404(Product, id=product_id)
 
         if product_id not in cart:
-            cart[product_id] = {'id': product.id, 'name': product.name, 'price': str(product.price)}
+            cart[product_id] = {
+                'id': product.id, 
+                'name': product.name, 
+                'description': product.description, 
+                'price': str(product.price),
+                'image': request.build_absolute_uri(settings.MEDIA_URL + str(product.image))
+                }
             request.session['cart'] = cart
         
         return Response({'cart': cart})
