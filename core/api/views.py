@@ -9,6 +9,8 @@ from django.core import serializers
 from rest_framework import status
 from django.conf import settings
 from django.db.models import Q
+from django.db.models.functions import Lower
+from unidecode import unidecode
 
 class ProductApiViewSet(ModelViewSet):
     serializer_class = ProductSerializer
@@ -60,6 +62,9 @@ class CartApiViewSet(ModelViewSet):
         session = self.get_session(request)
         cart = session.get('cart', {})
         product_id = request.data.get('product_id')
+        precio = request.data.get('precio')
+        cantidad = request.data.get('cantidad')
+        gramos = request.data.get('gramos')
         product = get_object_or_404(Product, id=product_id)
 
         if product_id not in cart:
@@ -67,7 +72,11 @@ class CartApiViewSet(ModelViewSet):
                 'id': product.id, 
                 'name': product.name, 
                 'description': product.description, 
-                'price': str(product.price),
+                'price': precio,
+                'cantidad': cantidad,
+                'gramos': gramos,
+                'grval': product.Pgramos,
+                'kgval': product.price,
                 'image': request.build_absolute_uri(settings.MEDIA_URL + str(product.image))
                 }
             request.session['cart'] = cart
