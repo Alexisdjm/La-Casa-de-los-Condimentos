@@ -1783,6 +1783,7 @@ figcaption {
   justify-content: flex-start;
   max-height: 3em;
   border-radius: 15px;
+  align-items: center;
 }
 
 .message-container h3 {
