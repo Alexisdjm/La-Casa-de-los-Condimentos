@@ -1125,6 +1125,7 @@ figcaption {
   width: 100%;
   display: flex;
   position: relative;
+  min-height: 250px;
   top: -2px;
   padding-bottom: 40px;
   justify-content: center;
@@ -1771,6 +1772,26 @@ figcaption {
   transform: translateX(25px);
 }
 
+/* ------------------------------------------ message ----------------------------------------------- */
+
+.message-container {
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
+  background-color: var(--color-white);
+  padding: 1em;
+  width: 40%;
+  display: flex;
+  justify-content: flex-start;
+  max-height: 3em;
+  border-radius: 15px;
+}
+
+.message-container h3 {
+  font-size: 24px;
+  font-weight: var(--font-weight-regular);
+  margin: 0;
+
+}
+
 
 /* ------------------------------------------ media queries ----------------------------------------- */
 
@@ -2010,6 +2031,10 @@ figcaption {
     align-items: center;
     gap: 5px;
   }
+
+  .message-container {
+    width: 80%;
+  }
 }
 
 @media only screen and (min-width: 464px) and (max-width: 767px) {
@@ -2103,6 +2128,10 @@ figcaption {
     width: 80%;
     margin: 0.75em;
     padding: 0.6em 0;
+  }
+
+  .message-container {
+    width: 75%;
   }
   
 }
@@ -2282,6 +2311,10 @@ figcaption {
 
   .products-flex {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  .message-container {
+    width: 50%;
   }
 
 }

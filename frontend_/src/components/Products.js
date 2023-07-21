@@ -17,7 +17,6 @@ const Products = () => {
     const [first, setfirst] = useState('')
     const [second, setSecond] = useState('')
     const [elements, setElements] = useState(null)
-    const [loc, setLoc] = useState(location.pathname)
 
     const array = [
         ['co', ('Condimentos y '), ('Especias')],
@@ -46,20 +45,19 @@ const Products = () => {
     }
 
     useEffect(() => {
+        let locc = location.pathname
 
-        setLoc(location.pathname)
+        fetchData(`http://127.0.0.1:8000/api/products/${locc.split('/').at(-1)}/`, setElements)
 
-        fetchData(`http://127.0.0.1:8000/api/products/${loc.split('/').at(-1)}/`, setElements)
-
-        if ( loc.split('/').at(-1) === 'all') {
+        if ( locc.split('/').at(-1) === 'all') {
             setfirst('Todos Los ');
             setSecond('Productos')
         } else {
-            let texts = searchCategory(loc);
+            let texts = searchCategory(locc);
             setfirst(texts[0])
             setSecond(texts[1])
         }
-    }, [loc, location])
+    }, [location])
     return(
         <>
             <Header dynamic={true}/>
