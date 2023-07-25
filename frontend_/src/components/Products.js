@@ -46,6 +46,7 @@ const Products = () => {
 
     useEffect(() => {
         let locc = location.pathname
+        window.scrollTo(0, 0)
 
         fetchData(`http://127.0.0.1:8000/api/products/${locc.split('/').at(-1)}/`, setElements)
 
