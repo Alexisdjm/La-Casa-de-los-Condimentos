@@ -510,7 +510,7 @@ div.hide-desktop {
 }
 .custom-shape-divider-bottom-1681072197 {
   position: absolute;
-  bottom: 0;
+  bottom: -5px;
   left: 0;
   width: 100%;
   overflow: hidden;
