@@ -38,6 +38,13 @@ class SingleProductApiViewSet(ModelViewSet):
         product = self.kwargs.get(self.look_param)
         queryset = Product.objects.filter(id=product)
         return queryset
+    
+    def list(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        if not queryset.exists():
+            return Response({"detail": "No se encontraron productos."})
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
 
 class CartApiViewSet(ModelViewSet):
     serializer_class = ProductSerializer

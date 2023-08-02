@@ -27,6 +27,8 @@ const Products = () => {
         ['ch', ('Químicos y '), ('Más')]
     ]
 
+    const keys = ['co','bk','nt','gr','gc','ch', 'all']
+
     const searchCategory = (location) => {
 
         for (let i = 0; i < array.length; i++) {
@@ -46,6 +48,10 @@ const Products = () => {
 
     useEffect(() => {
         let locc = location.pathname
+
+        if (!keys.includes(locc.split('/').at(-1))) {
+            window.location.pathname = '/404'
+        }
         window.scrollTo(0, 0)
 
         fetchData(`http://127.0.0.1:8000/api/products/${locc.split('/').at(-1)}/`, setElements)
@@ -53,11 +59,12 @@ const Products = () => {
         if ( locc.split('/').at(-1) === 'all') {
             setfirst('Todos Los ');
             setSecond('Productos')
-        } else {
+        } else if (keys.includes(locc.split('/').at(-1))) {
             let texts = searchCategory(locc);
             setfirst(texts[0])
             setSecond(texts[1])
         }
+
     }, [location])
     return(
         <>

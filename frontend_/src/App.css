@@ -1793,6 +1793,44 @@ figcaption {
 
 }
 
+/* ------------------------------------------ 404 page ---------------------------------------------- */
+
+.father-container {
+  height: 110vh;
+  display: grid;
+  place-items: center;
+}
+
+.father-container::before {
+  content: '';
+    display: block;
+    position: absolute;
+    background-color: #000;
+    opacity: 0.5;
+    width: 100%;
+    height: 110vh;
+}
+
+.for0for-container {
+  display: flex;
+  gap: 15px;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+}
+
+.for0for-container h2 {
+  font-size: 100px;
+  font-weight: var(--font-weight-regular);
+  color: var(--casa-orange);
+}
+
+.for0for-container h4 {
+  color: var(--color-white);
+  font-size: 44px;
+  font-weight: var(--font-weight-regular);
+}
+
 
 /* ------------------------------------------ media queries ----------------------------------------- */
 

@@ -98,15 +98,19 @@ const Item = () => {
         fetch(url)
         .then(data => data.json())    
         .then(json => {
-            for (let i = 0; i < array.length; i++) {
-                if (array[i][0] === json[0].category) {
-                    setCategory(array[i][1])
-                }
-            }  
-            setProduct(json)
-            setIncart(json[0].session.in_cart)
-            setPrecio(json[0].price)
-            setTotal(json[0].price)
+            if ('detail' in json) {
+                window.location.pathname = '/404'
+            } else {
+                for (let i = 0; i < array.length; i++) {
+                    if (array[i][0] === json[0].category) {
+                        setCategory(array[i][1])
+                    }
+                } 
+                setProduct(json)
+                setIncart(json[0].session.in_cart)
+                setPrecio(json[0].price)
+                setTotal(json[0].price)
+            }
         })
     }
 
