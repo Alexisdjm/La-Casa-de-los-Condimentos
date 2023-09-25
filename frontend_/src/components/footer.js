@@ -12,6 +12,10 @@ const Footer = ({children}) => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
+    const num = '584129692100'
+    let message = "Holaa 😃 Deseo solicitar lista de precios por favor"
+    let encodedMessage = encodeURIComponent(message);
+
     return(
         <>
             <div className='footer-top-publicity' style={{backgroundImage:`url(${images.bg1})`}}>
@@ -32,8 +36,8 @@ const Footer = ({children}) => {
                         </div>
                         <div className='flex-col z-fold-max-width footer-menu-box'>
                             <h1 className='footer-link-title'>Contacto</h1>
-                            <a className='footer-menu-link' href='/'><FaWhatsapp/>+58-412-1542833</a>
-                            <a className='footer-menu-link' href='/'><FaInstagram/>@casa_condimentos28</a>
+                            <a className='footer-menu-link' href={`https://api.whatsapp.com/send?phone=${num}&text=${encodedMessage}`}><FaWhatsapp/>+58-412-1542833</a>
+                            <a className='footer-menu-link' href='https://instagram.com/casa_condimentos28?igshid=MzRlODBiNWFlZA=='><FaInstagram/>@casa_condimentos28</a>
                             <label className='footer-menu-link' id='mail'>
                                 <img className='logo-footer' src={images.email} alt='logo'></img>
                                 casacondimentos@gmail.com

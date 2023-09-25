@@ -52,7 +52,7 @@ const CartContent = () => {
 
     const BuyCart = () => {
         const sendMessage = () => {
-            let num = '584127615686'
+            let num = '584129692100'
             let message = [
                 `Buen dia, me gustaria comprar los siguientes productos: \n${Object.values(items).map(product => `${product.name} \n cantidad: ${product.gramos ? (parseFloat(product.cantidad)*100) + ' gr' : product.name.includes(' gr') ? product.cantidad + ' unidades' : product.cantidad + 'kg'}`).join("\n ")} \n Total: $${parseFloat(total).toFixed(2)}`
             ]

@@ -16,6 +16,7 @@ function App() {
         <Route path='/product/:id' element={<SingleProduct/>}/>
         <Route path='/cart' element={<Cart/>}/>
         <Route path='/:404' element={<For0For/>}/>
+        <Route path='/admin' element=''/>
         <Route path="*" element={<Navigate to="/404" />} />
       </Routes>
     </Router>

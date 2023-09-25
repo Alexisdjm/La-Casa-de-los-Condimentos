@@ -11,6 +11,10 @@ const Header = ({dynamic}) => {
     const [toggle, setToggle] = useState(false)
     const [menu, setMenu] = useState(false)
 
+    const num = '584129692100'
+    let message = "Holaa 😃 Deseo solicitar lista de precios por favor"
+    let encodedMessage = encodeURIComponent(message);
+
     const setSidebar = (e) => {
         e.preventDefault()
         toggle ? setToggle(false) : setToggle(true)
@@ -65,8 +69,9 @@ const Header = ({dynamic}) => {
                             </a>
                             <div className='right-links flex-center header-containers-gap align-center' style={{width:'30%'}}>
                                 <Link to='/cart/' className='icon-link'><img className='small-logo-header' src={!header ? images.bolsaNaranja : images.bolsa} alt='cart'></img></Link>
-                                <a className={!header ? 'icon-link icons-svg-dimensions icon-margin-fit simple-flex' : 'icon-link icons-svg-scroll icon-margin-fit simple-flex'} href='/'><FaInstagram/></a>
-                                <a className={!header ? 'contact-btn' : 'scroll-contact-btn'} href='/'>Contactanos</a>
+                                <a className={!header ? 'icon-link icons-svg-dimensions icon-margin-fit simple-flex' : 'icon-link icons-svg-scroll icon-margin-fit simple-flex'} 
+                                href='https://instagram.com/casa_condimentos28?igshid=MzRlODBiNWFlZA=='><FaInstagram/></a>
+                                <a className={!header ? 'contact-btn' : 'scroll-contact-btn'} href={`https://api.whatsapp.com/send?phone=${num}&text=${encodedMessage}`}>Contactanos</a>
                             </div>
                         </div>
                     </div>
@@ -94,8 +99,8 @@ const Header = ({dynamic}) => {
                             </a>
                             <div className='right-links flex-center header-containers-gap align-center' style={{width:'30%'}}>
                                 <Link to='/cart/' className='icon-link'><img className='small-logo-header' src={images.bolsa} alt='cart'></img></Link>
-                                <a className='icon-link icons-svg-scroll icon-margin-fit simple-flex' href='/'><FaInstagram/></a>
-                                <a className='scroll-contact-btn' href='/'>Contactanos</a>
+                                <a className='icon-link icons-svg-scroll icon-margin-fit simple-flex' href='https://instagram.com/casa_condimentos28?igshid=MzRlODBiNWFlZA=='><FaInstagram/></a>
+                                <a className='scroll-contact-btn' href={`https://api.whatsapp.com/send?phone=${num}&text=${encodedMessage}`}>Contactanos</a>
                             </div>
                         </div>
                     </div>
