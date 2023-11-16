@@ -65,13 +65,13 @@ SESSION_COOKIE_SAMESITE = 'Strict'
 SESSION_COOKIE_SECURE = True
 
 CORS_ALLOW_CREDENTIALS = True
-CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_ALLOW_ALL = True
 
 APPEND_SLASH = False
 
 CORS_ORIGIN_WHITELIST = [
-        'http://localhost:3000'
-    ]
+
+]
 
 ROOT_URLCONF = 'condimentos.urls'
 
@@ -79,7 +79,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, '../frontend_/build')
+            os.path.join(BASE_DIR, 'frontend_', 'build'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -146,7 +146,9 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/images/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, '../frontend_/build/static')
+    os.path.join(BASE_DIR, 'frontend_', 'build', 'static'),
+    # os.path.join(BASE_DIR, '../frontend_/build/static')
+    # Comentario
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
