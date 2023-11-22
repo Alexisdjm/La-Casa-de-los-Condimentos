@@ -40,7 +40,7 @@ RUN pip install -r requirements.txt
 # RUN python mamage.py makemigrations
 # RUN python mamage.py migrate
 
-# RUN apt-get update && apt-get install nano -y
+RUN apt-get update && apt-get install nano -y
 # port where the Django app runs  
 EXPOSE 8000  
 # start server  
