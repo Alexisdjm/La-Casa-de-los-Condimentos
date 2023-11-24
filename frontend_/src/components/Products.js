@@ -54,7 +54,7 @@ const Products = () => {
         }
         window.scrollTo(0, 0)
 
-        fetchData(`http://127.0.0.1:8000/api/products/${locc.split('/').at(-1)}/`, setElements)
+        fetchData(`https://casacondimentos.com//api/products/${locc.split('/').at(-1)}/`, setElements)
 
         if ( locc.split('/').at(-1) === 'all') {
             setfirst('Todos Los ');

@@ -75,7 +75,7 @@ const CartContent = () => {
             obj[key] = items[key];
             return obj;
           }, {});
-        DeleteFromCart(`http://127.0.0.1:8000/api/cart/${id}/`)
+        DeleteFromCart(`https://casacondimentos.com//api/cart/${id}/`)
         setItems(newData);
         toast.message('Producto eliminado', {
             description: 'El producto fue eliminado del carrito',
@@ -84,7 +84,7 @@ const CartContent = () => {
 
     useEffect(() => {
         window.scrollTo(0,0)
-        fetchData(`http://127.0.0.1:8000/api/cart/`)  
+        fetchData(`https://casacondimentos.com//api/cart/`)  
 
     }, [location])
     
