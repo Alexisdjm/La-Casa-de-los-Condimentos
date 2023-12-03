@@ -18,7 +18,7 @@ const images = {
     bolsa: require('./icons/shopping-bag.png'),
     bolsaNaranja: require('./icons/shopping-bag-orange.png'),
     bg1: require('./img/condimentos-bg-1.jpeg'),
-    bg2: require('./img/condimentos-bg-2.jpeg'),
+    bg2: require('./img/condimentos-bg-2.webp'),
     bg3: require('./img/condimentos-bg-3.jpeg'),
     bg4: require('./img/condimentos-bg-4.jpeg'),
     dulces: require('./icons/dulces.png'),
