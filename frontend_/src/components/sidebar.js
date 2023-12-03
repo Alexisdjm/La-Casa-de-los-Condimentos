@@ -15,7 +15,7 @@ const Sidebar = ({togg, func, kind, side, justmobile}) => {
     
     const handleSearch = (e) => {
         e.preventDefault();
-        fetch(`http://127.0.0.1:8000/api/consulta/?search=${inputValue}`)
+        fetch(`https://casacondimentos.com//api/consulta/?search=${inputValue}`)
         .then(response => response.json())
         .then(data => {
             setResults(data)

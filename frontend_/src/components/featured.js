@@ -16,7 +16,7 @@ const Featured = ({css}) => {
     }
 
     useEffect(() => {
-        fetchData('http://127.0.0.1:8000/api/products/featured/', setProducts)
+        fetchData('https://casacondimentos.com//api/products/featured/', setProducts)
     }, [])
 
     const responsive = {

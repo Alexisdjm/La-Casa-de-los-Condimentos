@@ -117,7 +117,7 @@ const Item = () => {
     useEffect(() => {
         window.scrollTo(0,0)
         setUrl(location.pathname)
-        fetchData(`http://127.0.0.1:8000/api/item/${url.split('/').at(-1)}/`) 
+        fetchData(`https://casacondimentos.com//api/item/${url.split('/').at(-1)}/`) 
         setcantidad(1)
         setGramos(false)
         
@@ -194,12 +194,12 @@ const Item = () => {
                             <div className='flex-col buttons-container'>
                                 <button className='cart-btn' onClick={() => { 
                                     if (!incart) {
-                                        AddToCart('http://127.0.0.1:8000/api/cart/', product[0].id, cantidad, gramos, total)
+                                        AddToCart('https://casacondimentos.com//api/cart/', product[0].id, cantidad, gramos, total)
                                         setIncart(true)
                                         toast('Producto agregado al carrito')
 
                                     } else {
-                                        deleteCart(`http://127.0.0.1:8000/api/cart/${product[0].id}/`)
+                                        deleteCart(`https://casacondimentos.com//api/cart/${product[0].id}/`)
                                         setIncart(false)
                                         toast('Producto eliminado del carrito')
                                     }}}>{incart ? 'Eliminar del Carrito' : 'Agregar al Carrito'}</button>
