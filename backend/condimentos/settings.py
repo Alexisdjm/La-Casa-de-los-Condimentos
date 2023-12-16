@@ -29,6 +29,8 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'casacondimentos.com',
     'www.casacondimentos.com',
+    '127.0.0.1:8000',
+    '127.0.0.1'
 ]
 
 
