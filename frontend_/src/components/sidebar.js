@@ -37,7 +37,7 @@ const Sidebar = ({togg, func, kind, side, justmobile}) => {
                     <>
                         <form className="search-form flex-center" onSubmit={handleSearch}>
                             <input required type="text" placeholder="Buscar" value={inputValue} className="search-input" onChange={InputChange}></input>
-                            <button type="submit" className="submit-button alternative-product-title-position"><FaSearch/></button>
+                            <button type="submit" className="submit-button" style={{display: "flex"}}><FaSearch/></button>
                         </form>
                         <div className="search-results-container">
                             { results.length > 0 ? results.map((result) => {
