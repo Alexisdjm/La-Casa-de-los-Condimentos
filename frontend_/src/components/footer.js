@@ -18,7 +18,7 @@ const Footer = ({children}) => {
 
     return(
         <>
-            <div className='footer-top-publicity' style={{backgroundImage:`url(${images.bg1})`}}>
+            <div className='footer-top-publicity alternative-product-title-position' style={{backgroundImage:`url(${images.bg1})`}}>
                 {children}
             </div>
             <section className='footer'>
