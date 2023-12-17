@@ -1055,7 +1055,7 @@ figcaption {
 .product-img {
   width: 80%;
   aspect-ratio: 1 / 1;
-  background-size: cover;
+  object-fit: cover;
 }
 
 .product-name, .product-price {
