@@ -91,9 +91,9 @@ const Header = ({dynamic}) => {
                                 <a className='scroll-link' href='/'>Categorias</a>                       
                                 <a className='scroll-link' href='/' onClick={setSidebar}>Buscar</a>  
                             </div>
-                            <picture className={'logo-header-container-scroll align-logo-center'}>
+                            <a href='/'><picture className={'logo-header-container-scroll align-logo-center'}>
                                 <img className='logo-header' src={images.logoNegro} alt='logo'></img>
-                            </picture>
+                            </picture></a>
                             <a className='icon-link mobile-show' href='/' onClick={setMenuu}>
                                 <img className='mobile-scroll-menu' src={images.menu} alt='cart'></img>
                             </a>
