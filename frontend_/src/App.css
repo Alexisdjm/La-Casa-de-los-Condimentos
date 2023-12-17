@@ -1090,6 +1090,12 @@ figcaption {
   place-items: center;
 }
 
+.alternative-product-title-position {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .product-centered-text::before {
   content: '';
   display: block;

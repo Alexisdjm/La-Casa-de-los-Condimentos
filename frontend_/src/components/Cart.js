@@ -9,7 +9,7 @@ const Cart = () => {
     return(
         <>
             <Header dynamic={true}/>
-            <Intro image={images.bg4} image2={images.bg2} container='product-centered-text'>
+            <Intro image={images.bg4} image2={images.bg2} container='product-centered-text alternative-product-title-position'>
                 <Toptext first='' second='Carrito'/>
             </Intro>
             <CartContent/>

@@ -69,7 +69,7 @@ const Products = () => {
     return(
         <>
             <Header dynamic={true}/>
-            <Intro image={images.bg3} image2={images.bg1} container='product-centered-text'>
+            <Intro image={images.bg3} image2={images.bg1} container='product-centered-text alternative-product-title-position'>
                 <Toptext first={first} second={second}/>
             </Intro>
             <Container>
