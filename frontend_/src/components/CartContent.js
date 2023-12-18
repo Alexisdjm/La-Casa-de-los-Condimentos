@@ -115,7 +115,7 @@ const CartContent = () => {
                                             <div className="flex-col cart-item-info">
                                                 <h4>{subObjeto.name}</h4>
                                                 <p>{subObjeto.description}</p>
-                                                <h4 className="hidden-price">${subObjeto.price}</h4>
+                                                <h4 className="hidden-price">${parseFloat(subObjeto.price.toFixed(2))}</h4>
                                             </div>
                                             <h4 className="cart-item-price">{subObjeto.gramos 
                                                 ? (parseFloat(subObjeto.cantidad)*100) + ' gr' 
