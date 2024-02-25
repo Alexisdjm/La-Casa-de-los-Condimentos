@@ -47,7 +47,7 @@ const Footer = ({children}) => {
                             <h1 className='footer-link-title'>Dirección</h1>
                             <label className='footer-menu-link line-height'>
                                 <img className='logo-footer' src={images.pin} alt='logo'></img>
-                                Calle 28 entre carrera 21 y 22, Barquisimeto, Estado Lara, Venezuela
+                                Calle 28 entre carrera 22 y 23, Barquisimeto, Estado Lara, Venezuela
                             </label>
                         </div>
 
