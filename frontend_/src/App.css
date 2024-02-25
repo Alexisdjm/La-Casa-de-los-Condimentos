@@ -22,6 +22,10 @@
 
 }
 
+body {
+  cursor: url("./images/icons/sal-_1_.webp"), auto !important;
+}
+
 a {
   text-decoration: none;
   color: inherit
