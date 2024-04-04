@@ -40,7 +40,7 @@ const Footer = ({children}) => {
                             <a className='footer-menu-link' href='https://instagram.com/casa_condimentos28'><FaInstagram/>@casa_condimentos28</a>
                             <label className='footer-menu-link' id='mail'>
                                 <img className='logo-footer' src={images.email} alt='logo'></img>
-                                casacondimentos@gmail.com
+                                lacasacye@gmail.com
                             </label>
                         </div>
                         <div className='direction-max-width flex-col footer-menu-box'>
