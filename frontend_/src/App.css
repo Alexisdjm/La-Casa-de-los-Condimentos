@@ -346,7 +346,7 @@ strong {
 .sidebar, .right-sidebar {
   position: fixed;
   top: 0;
-  z-index: 999;
+  z-index: 9999;
   display: flex;
   transition: 0.5s;
   min-height: 100vh;
