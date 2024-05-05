@@ -107,5 +107,5 @@ class QueryViewSet(ModelViewSet):
         queryset = Product.objects.all()
         search_value = self.request.query_params.get('search', '')
         if search_value:
-            queryset = queryset.filter(Q(name__icontains=search_value) | Q(description__icontains=search_value))
+            queryset = queryset.filter(Q(name__icontains=search_value))
         return queryset
