@@ -42,9 +42,9 @@ const Item = () => {
 
     const Buy = () => {
         const sendMessage = () => {
-            let num = '584127615686'
+            let num = '584129692100'
             let message = [
-                `Buenas tardes, me gustaria comprar el siguiente producto: \nNombre: ${product[0].name}, \nCantidad: ${!product[0].Pgramos ? cantidad + ' unidades' : gramos ? cantidad*100 + ' gr' : cantidad + ' kg'}, \ntotal: $${total}`
+                `Buenas tardes desde su pagina web, me gustaria comprar el siguiente producto: \nNombre: ${product[0].name}, \nCantidad: ${!product[0].Pgramos ? cantidad + ' unidades' : gramos ? cantidad*100 + ' gr' : cantidad + ' kg'}, \ntotal: $${total}`
             ]
             const encodedMessage = encodeURIComponent(message);
             const url = `https://api.whatsapp.com/send?phone=${num}&text=${encodedMessage}`;
