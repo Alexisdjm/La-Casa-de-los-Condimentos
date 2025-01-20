@@ -117,7 +117,7 @@ const Item = () => {
     useEffect(() => {
         window.scrollTo(0,0)
         setUrl(location.pathname)
-        fetchData(`https://casacondimentos.com//api/item/${url.split('/').at(-1)}/`) 
+        fetchData(`https://casacondimentos.com/api/item/${url.split('/').at(-1)}/`) 
         setcantidad(1)
         setGramos(false)
         
@@ -142,6 +142,8 @@ const Item = () => {
                     </div>
                     <div className='flex-center purchase-box-container'>
                         <div className="purchase-box flex-col">
+
+
                             {product[0].ciengramos > 0
                             ? (
                                 <div id="desktop-gr">
