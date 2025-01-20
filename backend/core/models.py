@@ -10,7 +10,7 @@ CATEGORY_CHOICES = (
 )
 
 class Product(models.Model):
-     name = models.CharField(max_length=256)
+    name = models.CharField(max_length=256)
     price = models.FloatField()
     ciengramos = models.FloatField(default=0)
     dccgramos = models.FloatField(default=0)
