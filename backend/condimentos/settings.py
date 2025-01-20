@@ -33,6 +33,14 @@ ALLOWED_HOSTS = [
     '127.0.0.1'
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://casacondimentos.com'
+]
+
+CSRF_COOKIE_SECURE = True  # Solo se envía CSRF en HTTPS
+SESSION_COOKIE_SECURE = True  # Protege la sesión con HTTPS
+
+
 
 # Application definition
 
