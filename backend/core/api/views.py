@@ -82,7 +82,7 @@ class CartApiViewSet(ModelViewSet):
                 'price': precio,
                 'cantidad': cantidad,
                 'gramos': gramos,
-                'grval': product.Pgramos,
+                'grval': product.ciengramos,
                 'kgval': product.price,
                 'image': request.build_absolute_uri(settings.MEDIA_URL + str(product.image))
                 }

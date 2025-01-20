@@ -12,7 +12,7 @@ class ProductSerializer(ModelSerializer):
         max_length=None, allow_empty_file=False, allow_null=True, use_url=True, required=False)
     class Meta:
         model = Product
-        fields = ['id','name','price', 'Pgramos','description','available','featured','image','category', 'session']
+        fields = ['id','name','price', 'ciengramos','description','available','featured','image','category', 'session']
 
     def get_session(self, obj):
         request = self.context.get('request')

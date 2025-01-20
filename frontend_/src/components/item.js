@@ -142,7 +142,7 @@ const Item = () => {
                     </div>
                     <div className='flex-center purchase-box-container'>
                         <div className="purchase-box flex-col">
-                            {product[0].Pgramos > 0
+                            {product[0].ciengramos > 0
                             ? (
                                 <div id="desktop-gr">
                                 <h4 className="purchase-caption">En gramos</h4>
@@ -150,8 +150,8 @@ const Item = () => {
                                 <input type="checkbox" checked={gramos} onChange={(e) => {
                                     if (e.target.checked) {
                                         setGramos(true)
-                                        setPrecio(product[0].Pgramos)
-                                        setTotal(product[0].Pgramos)
+                                        setPrecio(product[0].ciengramos)
+                                        setTotal(product[0].ciengramos)
                                     } else {
                                         setGramos(false)
                                         setPrecio(product[0].price)
