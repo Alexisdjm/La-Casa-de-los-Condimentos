@@ -10,9 +10,12 @@ CATEGORY_CHOICES = (
 )
 
 class Product(models.Model):
-    name = models.CharField(max_length=256)
+     name = models.CharField(max_length=256)
     price = models.FloatField()
-    Pgramos = models.FloatField(default=0)
+    ciengramos = models.FloatField(default=0)
+    dccgramos = models.FloatField(default=0)
+    mediokilo = models.FloatField(default=0)
+    mayor = models.FloatField(default=0)
     description = models.TextField()
     available = models.BooleanField(default=True)
     featured = models.BooleanField(default=False)
