@@ -6,8 +6,11 @@ import Cookies from 'js-cookie';
 import { ReactComponent as ShoppingCart } from '../images/svgs/shopping-cart-black.svg'
 import { Toaster, toast } from 'sonner'
 
-const Item = () => {
 
+const Item = () => {
+    
+    // const url_target = 'https://casacondimentos.com'
+    const url_target = 'http://127.0.0.1:8000'
     const location = useLocation()
     const [url, setUrl] = useState(location.pathname)
 
@@ -16,15 +19,12 @@ const Item = () => {
     const [product, setProduct] = useState([{
         id: '1', 
         name: 'name', 
-        price: '9.99', 
         category: 'cat', 
         session: {in_cart: false},
         description: 'description',
         image: images.cuatrocondimentos
     }])
 
-    const [total, setTotal] = useState(0)
-    const [precio, setPrecio] = useState(0)
 
     const [category, setCategory] = useState('')
     const [incart, setIncart] = useState(false)
@@ -40,11 +40,28 @@ const Item = () => {
 
     const csrftoken = Cookies.get('csrftoken');
 
+    // function getCookie(name) {
+    //     let cookieValue = null;
+    //     if (document.cookie && document.cookie !== '') {
+    //         const cookies = document.cookie.split(';');
+    //         for (let i = 0; i < cookies.length; i++) {
+    //             const cookie = cookies[i].trim();
+    //             if (cookie.substring(0, name.length + 1) === (name + '=')) {
+    //                 cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+    //                 break;
+    //             }
+    //         }
+    //     }
+    //     return cookieValue;
+    // }
+    
+    // const csrftoken = getCookie('csrftoken');
+
     const Buy = () => {
         const sendMessage = () => {
             let num = '584129692100'
             let message = [
-                `Buenas tardes desde su pagina web, me gustaria comprar el siguiente producto: \nNombre: ${product[0].name}, \nCantidad: ${!product[0].Pgramos ? cantidad + ' unidades' : gramos ? cantidad*100 + ' gr' : cantidad + ' kg'}, \ntotal: $${total}`
+                `Buenas tardes desde su pagina web, me gustaria comprar el siguiente producto: \nNombre: ${product[0].name}, \nCantidad: ${!product[0].Pgramos ? cantidad + ' unidades' : gramos ? cantidad*100 + ' gr' : cantidad + ' kg'}`
             ]
             const encodedMessage = encodeURIComponent(message);
             const url = `https://api.whatsapp.com/send?phone=${num}&text=${encodedMessage}`;
@@ -73,7 +90,7 @@ const Item = () => {
 
     }
 
-    function AddToCart(url, id, cantidad, medida, precio) {
+    function AddToCart(url, id, cantidad, medida) {
         fetch(url, {
             method: "POST",
             credentials: 'include',
@@ -83,19 +100,21 @@ const Item = () => {
             },
             body: JSON.stringify({
                 'product_id': id,
-                'precio': precio,
                 'cantidad': cantidad,
-                'gramos': medida
+                'medida': medida
             }),
         })
         .then(response => response.json())
-        .then(data => console.log(data))
+        .then(data => console.log("CARRITO:", data))
         .catch(error => console.error(error));
 
     }
 
     function fetchData(url) {
-        fetch(url)
+        fetch(url, {
+            method: 'GET',
+            credentials: 'include'
+        })
         .then(data => data.json())    
         .then(json => {
             if ('detail' in json) {
@@ -108,8 +127,6 @@ const Item = () => {
                 } 
                 setProduct(json)
                 setIncart(json[0].session.in_cart)
-                setPrecio(json[0].price)
-                setTotal(json[0].price)
             }
         })
     }
@@ -117,7 +134,7 @@ const Item = () => {
     useEffect(() => {
         window.scrollTo(0,0)
         setUrl(location.pathname)
-        fetchData(`https://casacondimentos.com/api/item/${url.split('/').at(-1)}/`) 
+        fetchData(`${url_target}/api/item/${url.split('/').at(-1)}/`) 
         setcantidad(1)
         setGramos(false)
         
@@ -137,14 +154,13 @@ const Item = () => {
                             <h1>{product[0].name}</h1>
                             {!incart ? '' : (<h5 className="in-cart">En el carrito <ShoppingCart/></h5>)}
                             <p className="product-description">{product[0].description}</p>
-                            <p className="price-description">Precio: <strong>${product[0].price}</strong></p>
                         </div>
                     </div>
                     <div className='flex-center purchase-box-container'>
                         <div className="purchase-box flex-col">
 
 
-                            {product[0].ciengramos > 0
+                            {product[0].measurement = 'bo'
                             ? (
                                 <div id="desktop-gr">
                                 <h4 className="purchase-caption">En gramos</h4>
@@ -152,12 +168,8 @@ const Item = () => {
                                 <input type="checkbox" checked={gramos} onChange={(e) => {
                                     if (e.target.checked) {
                                         setGramos(true)
-                                        setPrecio(product[0].ciengramos)
-                                        setTotal(product[0].ciengramos)
                                     } else {
                                         setGramos(false)
-                                        setPrecio(product[0].price)
-                                        setTotal(product[0].price)
                                     }
                                     setcantidad(1)
                                 }}></input>
@@ -172,36 +184,29 @@ const Item = () => {
                                 <h4 className="purchase-caption">Cantidad</h4>
                                 <div className="flex-center" style={{padding: '0 0 10px'}}>
                                     <button className='menos-btn' onClick={() => {
-                                        cantidad <= 1 ? setcantidad(1) : setcantidad(prevValue => prevValue - 1)
-                                        total <=0 ? setTotal(precio) : setTotal(prevTotal => prevTotal - precio)    
+                                        cantidad <= 1 ? setcantidad(1) : setcantidad(prevValue => prevValue - 1)  
                                     }}>-</button>
-                                    <input className="cantidad" value={gramos ? cantidad*100 : cantidad} readOnly type="text"></input>
+                                    <input className="cantidad" value={gramos ? cantidad*50 : cantidad} readOnly type="text"></input>
                                     <button className='mas-btn' onClick={() => {
-                                        setcantidad(prevValue => prevValue + 1)
-                                        setTotal(prevTotal => prevTotal + precio) 
-                                        }}>+</button>
+                                        setcantidad(prevValue => prevValue + 1)}}>+</button>
                                 </div>
                             </div>
                             <div className="price-align">
-                                <div className="simple-flex space-between">
-                                    <h4 className="price-spec">Precio</h4>
-                                    <h4 className="price-numbers">${precio > 0 ? precio.toFixed(2) : product[0].price}</h4>
-                                </div>
                                 <hr></hr>
                                 <div className="simple-flex space-between">
                                     <h4 className="price-spec">Total</h4>
-                                    <h4 className="price-numbers">${total > 0 ? total.toFixed(2) : product[0].price}</h4>
+                                    <h4 className="price-numbers">{gramos ? cantidad*50 + 'g' : cantidad + 'kg'}</h4>
                                 </div>
                             </div>
                             <div className='flex-col buttons-container'>
                                 <button className='cart-btn' onClick={() => { 
                                     if (!incart) {
-                                        AddToCart('https://casacondimentos.com//api/cart/', product[0].id, cantidad, gramos, total)
+                                        AddToCart(`${url_target}/api/cart/`, product[0].id, cantidad, gramos)
                                         setIncart(true)
                                         toast('Producto agregado al carrito')
 
                                     } else {
-                                        deleteCart(`https://casacondimentos.com//api/cart/${product[0].id}/`)
+                                        deleteCart(`${url_target}/api/cart/${product[0].id}/`)
                                         setIncart(false)
                                         toast('Producto eliminado del carrito')
                                     }}}>{incart ? 'Eliminar del Carrito' : 'Agregar al Carrito'}</button>

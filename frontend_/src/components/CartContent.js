@@ -6,10 +6,10 @@ import { Toaster, toast } from 'sonner'
 
 const CartContent = () => {
 
+    const url_target = 'https://casacondimentos.com'
     const csrftoken = Cookies.get('csrftoken');
 
     const [items, setItems] = useState({})
-    const [itemsInfo, setItemsInfo] = useState({})
     const [total, setTotal] = useState(0)
 
     const filteredKeys = ['id', 'cantidad', 'gramos', 'grval', 'kgval'];
@@ -21,7 +21,6 @@ const CartContent = () => {
         .then(data => data.json())    
         .then(json => {
             setItems(json.cart)
-            setTotal(json.total)
             console.log(json)
             const filteredObject = {};
             Object.keys(json.cart).forEach(key => {
@@ -32,7 +31,6 @@ const CartContent = () => {
                         }
                     });
                 });
-            setItemsInfo(filteredObject);
         })
     }
 
@@ -75,7 +73,7 @@ const CartContent = () => {
             obj[key] = items[key];
             return obj;
           }, {});
-        DeleteFromCart(`https://casacondimentos.com//api/cart/${id}/`)
+        DeleteFromCart(`${url_target}//api/cart/${id}/`)
         setItems(newData);
         toast.message('Producto eliminado', {
             description: 'El producto fue eliminado del carrito',
@@ -84,7 +82,7 @@ const CartContent = () => {
 
     useEffect(() => {
         window.scrollTo(0,0)
-        fetchData(`https://casacondimentos.com//api/cart/`)  
+        fetchData(`${url_target}//api/cart/`)  
 
     }, [location])
     
@@ -96,7 +94,6 @@ const CartContent = () => {
                     <div className="cart-items-container flex-col">
                         <div className="simple-flex space-between">
                             <h1 className="cart-title">Carrito</h1>
-                            <h4 className="cart-box-price-label">Precio</h4>
                         </div>
                         <div className="cart-items-box">
                             { Object.keys(items).length > 0 ? Object.keys(items).map((product) => {

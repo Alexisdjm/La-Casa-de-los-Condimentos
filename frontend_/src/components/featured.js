@@ -59,7 +59,6 @@ const Featured = ({css}) => {
                                         <img className='product-img' src={product.image} alt={product.name}></img>
                                         <div className='flex-col product-inner-text'>
                                             <h1 className='product-name'>{product.name}</h1>
-                                            <h4 className='product-price'>{product.price + ' $'}</h4>
                                         </div>
                                     </div>
                                 </div>

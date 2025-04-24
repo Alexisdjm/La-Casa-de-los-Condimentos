@@ -30,15 +30,17 @@ ALLOWED_HOSTS = [
     'casacondimentos.com',
     'www.casacondimentos.com',
     '127.0.0.1:8000',
-    '127.0.0.1'
+    '127.0.0.1',
+    'localhost'
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://casacondimentos.com'
+    'https://casacondimentos.com',
+    "http://localhost:3000"
 ]
 
-CSRF_COOKIE_SECURE = True  # Solo se envía CSRF en HTTPS
-SESSION_COOKIE_SECURE = True  # Protege la sesión con HTTPS
+CSRF_COOKIE_SECURE = False  # Solo se envía CSRF en HTTPS
+SESSION_COOKIE_SECURE = False  # Protege la sesión con HTTPS
 
 
 
@@ -58,9 +60,9 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -74,13 +76,20 @@ SESSIONS_SAVE_EVERY_REQUEST = True
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 
 SESSION_COOKIE_HTTPONLY = True
-SESSION_COOKIE_SAMESITE = 'Strict'
-SESSION_COOKIE_SECURE = True
+# SESSION_COOKIE_SAMESITE = 'Strict'
+SESSION_COOKIE_SAMESITE = 'Lax'
+SESSION_COOKIE_SECURE = False
 
 CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_ALLOW_ALL = True
+CSRF_COOKIE_HTTPONLY = False
+CSRF_COOKIE_SAMESITE = 'None'
 
 APPEND_SLASH = False
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+]
 
 CORS_ORIGIN_WHITELIST = [
 

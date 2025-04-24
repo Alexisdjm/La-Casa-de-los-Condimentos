@@ -11,6 +11,7 @@ from django.conf import settings
 from django.db.models import Q
 from django.db.models.functions import Lower
 from unidecode import unidecode
+from django.contrib.sessions.models import Session
 
 class ProductApiViewSet(ModelViewSet):
     serializer_class = ProductSerializer
@@ -44,6 +45,11 @@ class SingleProductApiViewSet(ModelViewSet):
         if not queryset.exists():
             return Response({"detail": "No se encontraron productos."})
         serializer = self.get_serializer(queryset, many=True)
+        sessions = Session.objects.all()
+        print("Cookies recibidas:", request.COOKIES)
+        print("🔍 SESIONES ACTIVAS EN LA BD:")
+        for s in sessions:
+            print(f"→ SessionKey: {s.session_key} | Datos:", s.get_decoded())
         return Response(serializer.data)
 
 class CartApiViewSet(ModelViewSet):
@@ -60,30 +66,26 @@ class CartApiViewSet(ModelViewSet):
     def list(self, request, *args, **kwargs):
         session = self.get_session(request)
         cart = session.get('cart', {}) 
-        total = 0
-        for product_id, product in cart.items():
-            total += float(product['price'])
-        return Response({'cart': cart, 'total': total, 'session key': session.session_key})
+        return Response({ 'cart': cart, 'session key': session.session_key })
+        # for product_id, product in cart.items():
+        #     return Response({ 'cart': cart, 'session key': session.session_key })
 
     def create(self, request, *args, **kwargs):
         session = self.get_session(request)
         cart = session.get('cart', {})
         product_id = request.data.get('product_id')
-        precio = request.data.get('precio')
         cantidad = request.data.get('cantidad')
-        gramos = request.data.get('gramos')
+        medida = request.data.get('medida')
+
         product = get_object_or_404(Product, id=product_id)
 
         if product_id not in cart:
-            cart[product_id] = {
+            cart[str(product_id)] = {
                 'id': product.id, 
                 'name': product.name, 
                 'description': product.description, 
-                'price': precio,
                 'cantidad': cantidad,
-                'gramos': gramos,
-                'grval': product.ciengramos,
-                'kgval': product.price,
+                'medida': medida,
                 'image': request.build_absolute_uri(settings.MEDIA_URL + str(product.image))
                 }
             request.session['cart'] = cart

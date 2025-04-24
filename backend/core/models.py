@@ -9,13 +9,16 @@ CATEGORY_CHOICES = (
     ('ch', 'Chemical Products')
 )
 
+AMOUNT_CHOICES = (
+    ('kg', 'Kilograms'),
+    ('g', 'Grams'),
+    ('bo', 'Both'),
+    ('un', 'Unit')
+)
+
 class Product(models.Model):
     name = models.CharField(max_length=256)
-    price = models.FloatField()
-    ciengramos = models.FloatField(default=0)
-    dccgramos = models.FloatField(default=0)
-    mediokilo = models.FloatField(default=0)
-    mayor = models.FloatField(default=0)
+    measurement = models.CharField(choices=AMOUNT_CHOICES, max_length=2, default='kg')
     description = models.TextField()
     available = models.BooleanField(default=True)
     featured = models.BooleanField(default=False)
